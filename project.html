@@ -7482,7 +7482,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Can-Spam-be-Classified-Based-on-Capitalization?">Can Spam be Classified Based on Capitalization?<a class="anchor-link" href="#Can-Spam-be-Classified-Based-on-Capitalization?">¶</a></h1>
+<h1 id="Differences-in-Capitalization-in-Spam-and-Non-Spam-Email">Differences in Capitalization in Spam and Non-Spam Email<a class="anchor-link" href="#Differences-in-Capitalization-in-Spam-and-Non-Spam-Email">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7493,9 +7493,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>The <code>Spambase</code> dataset is a collection of assorted emails. Its variables include the frequencies of various words, lengths of capital letter sequences, and class, spam(1) or non-spam(0).</p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>The <code>Spambase</code> dataset is a collection of assorted emails. Its variables include the frequencies of various words, lengths of capital letter sequences, and class: spam(1) or non-spam(0).</p>
 <p>Spam email is unsolicited bulk email, often explicit or commercial, and has been an issue since the 1990s (Cranor et al., 1998, p.74). Spam is low-cost to send, but burdens service providers and recipients. While declining as of 2013, spam has become sophisticated, disguising itself from filters (Irani et al., 2013, p.2).</p>
-<p>Due to spam's increasing complexity, additional work must be done to increase the efficacy of its detection. To assist the construction of more practical spam filters, we will look for consistent content difference between spam and non-spam. We focus on the average length of sequences of capital letters, assuming that spam likely uses capitalization to create false urgency and garner attention.</p>
+<p>Due to spam's increasing complexity, additional work is needed to increase the efficacy of its detection. To assist the construction of more practical spam filters, we will look for consistent content differences between spam and non-spam. We focus on the average length of sequences of capital letters, assuming that spam likely uses capitalization to create false urgency and garner attention.</p>
 <p>The question we set out to answer is:</p>
 <p><strong>"Is the mean average length of uninterrupted sequences of capital letters different for spam and non-spam email?"</strong></p>
 </div>
@@ -7508,7 +7508,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Preliminary-Results">Preliminary Results<a class="anchor-link" href="#Preliminary-Results">¶</a></h2>
+<h2 id="Methods-and-Results">Methods and Results<a class="anchor-link" href="#Methods-and-Results">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7572,6 +7572,17 @@ The following object is masked from ‘package:lubridate’:
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><code>read.csv()</code> reads the dataset from the web. The data is already tidy, but we rename the columns with col_names()and convert 0 and 1 to 'non-spam' and 'spam' in the class variable.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7623,6 +7634,17 @@ The following object is masked from ‘package:lubridate’:
 <span class="w">    </span><span class="nf">mutate</span><span class="p">(</span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">class</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">"spam"</span><span class="p">,</span><span class="w"> </span><span class="s">"non-spam"</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Here, we check the size of the dataset and take a peek at the first few rows.</p>
 </div>
 </div>
 </div>
@@ -7948,7 +7970,7 @@ Warning message:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>*Note: some larger values/outliers are not pictured in order to fit the majority of values</p>
+<p>*Note: some larger values/outliers are not pictured in order to fit the majority of values.</p>
 <p>Spam emails seem to typically have a greater average length with a wider spread.
 The distributions for both are unimodal and strongly right-skewed.</p>
 <p>Based on these results, we might believe spam has longer capital letter sequences. For instance, an email with unusually long sequences of capitals is suspect.</p>
@@ -7962,9 +7984,11 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Methods:-Plan">Methods: Plan<a class="anchor-link" href="#Methods:-Plan">¶</a></h2><p>Assuming <code>Spambase</code> is a representative sample, our estimates of the mean values for capital letter sequences of spam and non-spam emails are likely to be good approximations of the true values, especially given the samples' large size. However, our point estimates do not provide any measure of how close they are likely to be to the true values: we do not know their uncertainty. We cannot use these results without further work.</p>
-<p>For our analysis, we build a confidence interval of the difference in means to obtain a range of values that we are confident contains the true difference. We also use both theory-based and bootstrapping-based approaches to conduct a hypothesis test.</p>
-<p>We will perform a two-sample t-test, as well as a bootstraping-based hypothesis test, for the difference in means, using $H_0: \mu_1 = \mu_0$ vs $H_1: \mu_1\gt \mu_0$, where 1 and 0 represent spam and non-spam. If there is a difference, we would expect to gain evidence of it from these inferences. If our results are significant we will be able to safely reject the null hypothesis, and conclude that capital letter sequence length is a solid indicator of spam.</p>
+<h3 id="Methods:-Plan">Methods: Plan<a class="anchor-link" href="#Methods:-Plan">¶</a></h3><p>Assuming <code>Spambase</code> is a representative sample, our estimates of the mean values for capital letter sequences of spam and non-spam emails are likely good approximations of the true values, especially given the samples' large size. However, our point estimates do not provide any measure of how close they are likely to be to the true values: we do not know their uncertainty. We cannot use these results without further work.</p>
+<p>Since both samples are large (1812 spam, 2788 non-spam), we can use the theory-based approach, assuming the sampling distribution is approximately normal by the Central Limit Theorem; and bootstrapping, which makes no such assumptions.</p>
+<p>For our analysis, we will build a confidence interval of the difference in means to obtain a range of values that we are confident contains the true difference.</p>
+<p>We also use both theory-based and bootstrapping-based approaches to conduct a hypothesis test. We will two hypothesis tests for the difference in means, one using bootstrapping, the other theory-based, with $H_0: \mu_1 = \mu_0$ vs $H_1: \mu_1\gt \mu_0$, where 1 and 0 represent spam and non-spam. If spam email has a larger mean average than non-spam, we would expect to gain evidence of it from these inferences. If our results are significant we will be able to safely reject the null hypothesis, and conclude that the mean capital letter sequence length of spam is greater than that of non-spam.</p>
+<p>We will use a significance level of $\alpha$ = 0.05, a commonly used value.</p>
 </div>
 </div>
 </div>
@@ -7975,7 +7999,9 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Methods:-Bootstrap-Confidence-Interval-(Not-a-hypothesis-test)">Methods: Bootstrap Confidence Interval (Not a hypothesis test)<a class="anchor-link" href="#Methods:-Bootstrap-Confidence-Interval-(Not-a-hypothesis-test)">¶</a></h2><p>We begin by constructing a 95% confidence interval for the difference between the mean capital letter usage between spam and non-spam emails. While this cannot lead us to reject or fail to reject the null hypothesis by itself, it does give us an idea about how extreme the difference is between these two means.</p>
+<h3 id="Bootstrap-Confidence-Interval">Bootstrap Confidence Interval<a class="anchor-link" href="#Bootstrap-Confidence-Interval">¶</a></h3><p>We begin with bootstrapping, which does not make assumptions about the the data.</p>
+<p>We will start by constructing a 95% confidence interval for the difference in the mean capital letter usage between spam and non-spam emails using bootstrapping, which gives us a better idea about the difference in means of the two groups spam and non-spam.</p>
+<p>We are using the <code>infer</code> package workflow to estimate the distribution of the difference in means, specifying the formula in <code>specify()</code>, generating 1000 bootstrap samples with <code>generate()</code>, and using <code>calculate()</code> to find the difference in means. Passsing the distribution <code>get_confidence_interval</code> then returns a tibble with a lower and upper bound for the difference.</p>
 </div>
 </div>
 </div>
@@ -7988,12 +8014,15 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1048596</span><span class="p">)</span>
-<span class="n">spam_bootstrap_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-<span class="w">    </span><span class="nf">generate</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">"bootstrap"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-<span class="w">    </span><span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"diff in means"</span><span class="p">,</span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"spam"</span><span class="p">,</span><span class="s">"non-spam"</span><span class="p">))</span>
+<span class="n">spam_bootstrap_dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">generate</span><span class="p">(</span><span class="n">reps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"bootstrap"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"diff in means"</span><span class="p">,</span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"spam"</span><span class="p">,</span><span class="w"> </span><span class="s">"non-spam"</span><span class="p">))</span>
 <span class="w">    </span>
-<span class="n">spam_ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spam_bootstrap_dist</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">get_confidence_interval</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="m">0.95</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">"percentile"</span><span class="p">)</span>
-<span class="n">spam_ci</span><span class="w"> </span><span class="c1"># here's a 95% confidence interval for the mean occurrences of spam in email.</span>
+<span class="n">spam_ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spam_bootstrap_dist</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">get_confidence_interval</span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"percentile"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Table 3: Confidence Interval (Bootstrapping) For Spambase"</span><span class="p">)</span>
+<span class="n">spam_ci</span><span class="w"> </span><span class="c1"># here's a 95% confidence interval for the difference in mean capital letter sequence lengths, in spam email</span>
 </pre></div>
 </div>
 </div>
@@ -8003,6 +8032,13 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[1] "Table 3: Confidence Interval (Bootstrapping) For Spambase"
+</pre>
+</div>
+</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
@@ -8027,8 +8063,8 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We find that the difference between the means is highly significant: the lower bound for the <em>difference</em> is larger than the <em>actual mean</em> of non-spam emails.</p>
-<p>This result means that if you were to take near a large number of samples from the population, we would expect 95% of these samples' point estimates for the differences between spam and non-spam capital letter usage to fall within this range.</p>
+<p>We find that the lower bound for the difference in the means is 5.06 and the upper bound is 9.76. The confidence interval does not contain 0 and both bounds are positive, which suggests that the true mean value of spam is greater than the mean of non-spam.</p>
+<p>We are 95% confident, meaning that we would expect 95% of total confidence intervals to capture the true difference in means. For instance, if we constructed 100 such intervals using different samples, we would expect 95 of them to contain the true difference in means.</p>
 </div>
 </div>
 </div>
@@ -8039,30 +8075,9 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Methods:-Bootstrap-Hypothesis-Testing">Methods: Bootstrap Hypothesis Testing<a class="anchor-link" href="#Methods:-Bootstrap-Hypothesis-Testing">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We consider a null hypothesis: that capital letter frequency is completely unrelated to classification as spam. We set alpha at 0.05, a common value used across many fields. The null hypothesis is what our data would look like if $H_0: \mu_1 = \mu_0$ were true, and there was no difference between the means of capital letter usage between the populations of spam and non-spam emails. By comparing our sample to this null model, we can determine how surprising it would be for our sample to have the results it does, if the null model were true.</p>
-<p>Here, we create the null model for this null hypothesis.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We do a one-sided hypothesis test, because we do not expect that spam email will contain fewer capital letters on average than non-spam. We choose an alpha of 0.05, as this is a common choice for a significance cutoff across fields. We begin with bootstrapping, instead of a theory-based approach, as the theory-based approaches are but approximations for bootstrapping. However, we will do both over the course of this report, and this proves useful for reasons we shall soon cover.</p>
+<h3 id="Theory-Based-Confidence-Interval">Theory-Based Confidence Interval<a class="anchor-link" href="#Theory-Based-Confidence-Interval">¶</a></h3><p>We double-check our bootstrapped confidence interval by calculating a confidence interval using theory-based approaches. The theory-based approach makes assumptions about the data: namely, that the sample obeys the Central Limit Theorem. The prerequisites of the Central Limit Theorem hold: our sample is large (it has thousands of observations, which is far greater than the usual rule-of-thumb of 30), the emails themselves are independent observations, and the mean is an estimator that is a sum of random components. Since the Central Limit Theorem applies, we can use theory-based approaches to easily calculate a confidence interval.</p>
+<p>We use the <code>sd</code>, <code>mean</code>, and <code>qnorm</code> functions to make the task relatively painless.</p>
+<p>Attribution: The following code is original, but was double-checked both against worksheet #7 and using a code generation model (no code written by the model was added to the report).</p>
 </div>
 </div>
 </div>
@@ -8074,18 +8089,193 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1337</span><span class="p">)</span>
+
+<span class="c1"># Calculate important variables</span>
+
+<span class="n">spam_diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">group_by</span><span class="p">(</span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">summarize</span><span class="p">(</span><span class="n">cap_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">capital_run_length_average</span><span class="p">),</span><span class="w"> </span><span class="n">errs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">capital_run_length_average</span><span class="p">),</span><span class="w"> </span><span class="n">sqr_err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">capital_run_length_average</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="nf">n</span><span class="p">())</span>
+<span class="w">    </span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Table 4: Important Statistics Across Spam and Non-Spam Categories"</span><span class="p">)</span>
+<span class="n">spam_diff</span>
+
+<span class="n">spam_s</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="n">spam_diff</span><span class="o">$</span><span class="n">sqr_err</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">spam_diff</span><span class="o">$</span><span class="n">sqr_err</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+
+<span class="n">spam_s</span>
+
+<span class="n">spam_x_bar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spam_diff</span><span class="o">$</span><span class="n">cap_length</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">spam_diff</span><span class="o">$</span><span class="n">cap_length</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="c1"># spam - non-spam</span>
+
+<span class="n">spam_x_bar</span>
+
+<span class="c1"># Create the confidence interval</span>
+<span class="n">theory_based_ci</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span>
+<span class="w">    </span><span class="n">lower_ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">qnorm</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="n">spam_x_bar</span><span class="p">,</span><span class="n">spam_s</span><span class="p">),</span>
+<span class="w">    </span><span class="n">upper_ci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">qnorm</span><span class="p">(</span><span class="m">0.975</span><span class="p">,</span><span class="n">spam_x_bar</span><span class="p">,</span><span class="n">spam_s</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="s">"Table 5: Theory-based confidence interval"</span><span class="p">)</span>
+<span class="n">theory_based_ci</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[1] "Table 4: Important Statistics Across Spam and Non-Spam Categories"
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A tibble: 2 × 4</caption>
+<thead>
+<tr><th scope="col">class</th><th scope="col">cap_length</th><th scope="col">errs</th><th scope="col">sqr_err</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>non-spam</td><td>2.377301</td><td> 5.113685</td><td>0.009379401</td></tr>
+<tr><td>spam    </td><td>9.522345</td><td>49.859762</td><td>1.371962395</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+1.17530498023263
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+7.14504454204554
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[1] "Table 5: Theory-based confidence interval"
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A tibble: 1 × 2</caption>
+<thead>
+<tr><th scope="col">lower_ci</th><th scope="col">upper_ci</th></tr>
+<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>4.841489</td><td>9.4486</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This confidence interval closely resembles the one we determined using bootstrap samples, so we can be more confident in our estimate of the range within which the difference in means can plausibly fall.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Bootstrap-Hypothesis-Test">Bootstrap Hypothesis Test<a class="anchor-link" href="#Bootstrap-Hypothesis-Test">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Our null hypothesis is that the mean average capital letter frequency is the same for spam versus non-spam email. The alternate hypothesis is that the mean average capital letter frequency is greater for spam versus non-spam email.</p>
+<p>$H_0: \mu_1 = \mu_0$ vs $H_1: \mu_1\gt \mu_0$</p>
+<p>(1 and 0 represent spam and non-spam respectively)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We do a one-sided hypothesis test, because we believe that spam email will contain more capital letters on average than non-spam. We chose an alpha of 0.05.</p>
+<p>The null distribution is what our sampling distribution would look like if there was no difference between the means of average capital letter usage between the populations of spam and non-spam emails. By comparing our sample to this model, we can determine how unusual our sample would be if the null hypothesis were true.</p>
+<p>Here, we create the null model for this null hypothesis, using the <code>infer</code> package workflow again.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1337</span><span class="p">)</span><span class="w"> </span><span class="c1"># set the seed</span>
 
-<span class="n">obs_diff_in_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-<span class="w">    </span><span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">"diff in means"</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">"spam"</span><span class="p">,</span><span class="s">"non-spam"</span><span class="p">))</span>
+<span class="n">obs_diff_in_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="w"> </span><span class="s">"diff in means"</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"spam"</span><span class="p">,</span><span class="s">"non-spam"</span><span class="p">))</span>
 
-<span class="n">null_diff_in_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-<span class="w">    </span><span class="nf">hypothesize</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="s">"independence"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-<span class="w">    </span><span class="nf">generate</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">"permute"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="n">null_diff_in_means</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spambase_selected</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">specify</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capital_run_length_average</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">class</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">hypothesize</span><span class="p">(</span><span class="n">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"independence"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">generate</span><span class="p">(</span><span class="n">reps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">"permute"</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
 <span class="w">    </span><span class="nf">calculate</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"diff in means"</span><span class="p">,</span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"spam"</span><span class="p">,</span><span class="s">"non-spam"</span><span class="p">))</span>
-<span class="w">    </span>
-<span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">null_diff_in_means</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">get_p_value</span><span class="p">(</span><span class="n">obs_stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs_diff_in_means</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="s">"right"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">"Table X"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now, we use the function <code>get_p_value()</code> to calculate the p-value, which is the probability of observing a value as or more extreme as the sample's value, if the null hypothesis were true. In other words, it is the chance of making a Type I error (false positive).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">p_value</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">null_diff_in_means</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">get_p_value</span><span class="p">(</span><span class="n">obs_stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs_diff_in_means</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="s">"right"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Table 6: P Value (Bootstrap Hypothesis Test)"</span><span class="p">)</span>
 <span class="n">p_value</span>
 </pre></div>
 </div>
@@ -8107,7 +8297,7 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[1] "Table X"
+<pre>[1] "Table 6: P Value (Bootstrap Hypothesis Test)"
 </pre>
 </div>
 </div>
@@ -8135,7 +8325,8 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Attribution: The following code was adapted from tutorial #6, and was further double-checked with a code generation model (no code written by the model was added to the report), since the authors of this report were incredulous at a p value of 0 (or, in reality, so close to 0 that R reported it as 0).</p>
+<p>Attribution: The above code was adapted from tutorial #6, and was further double-checked with a code generation model (no code written by the model was added to the report).</p>
+<p>We obtain the dubious p-value of 0. The function <code>get_p_value()</code> may return 0 when the observed statistic is extremely unlikely given the null hypothesis, but a small number of repetitions have been generated for the null distribution. Our observed statistic is more extreme than every test statistic generated to form the null distribution, resulting in an approximate p-value of 0 (RDocumentation). The interpretation of the p value we received is that there is a 0% probability of the results being a false positive; that we could reject the null hypothesis, regardless of the alpha value selected. This is clearly an absurd proposition, and so we will, later on in this report, utilize alternative methods of calculating a p-value, in order to get more sensible results.</p>
 </div>
 </div>
 </div>
@@ -8146,7 +8337,7 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We visualize the results of our bootstrapping and demonstrate that yes, a p-value that is extremely close to 0 makes sense.</p>
+<p>We visualize the observed statistic on the null distribution and see that the test statistic is more extreme than every test statistic generated to form the null distribution. This is an intuitive way to visualize why our work produced a p value of 0.</p>
 </div>
 </div>
 </div>
@@ -8155,7 +8346,7 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">diff_in_means_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="c1"># adapted from tutorial 6 solution</span>
@@ -8173,7 +8364,7 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">diff_in_means_plot</span>
@@ -8209,8 +8400,19 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Methods:-Theory-based-testing">Methods: Theory-based testing<a class="anchor-link" href="#Methods:-Theory-based-testing">¶</a></h2><p>Here we perform a t test to double-check the p value we acquired through bootstrapping. We confirm that the p value is infinitesimal. We note that though we originally favored the bootstrapping method of conducting a hypothesis test, our results were so significant that we could not actually attain a nonzero p value using that method and the computational resources at our disposal. Hence, the asymptotic approach has an advantage in that it lets us approximate just how small our small p value is.</p>
-<p>Each method of approximation gave similar results, in that they were quite small, yet technically one is still infinitely larger than the other. However both are quite sufficient to reject the null hypothesis, so we deem neither particularly more trustworthy than the other: yes, a 0 p value is mathematically impossible, but it's unclear how far off the computed p value is from the real p value, at such a small size, so we do not necessarily trust the asymptotic value completely either.</p>
+<h3 id="Theory-based-Hypothesis-Test">Theory-based Hypothesis Test<a class="anchor-link" href="#Theory-based-Hypothesis-Test">¶</a></h3><p>From bootstrapping, we know the p value is very small. We now do a theory-based hypothesis test, to approximate the p-value using a method that will not return 0.</p>
+<p>While we noted earlier the advantages of the bootstrapping method, we also discovered one of its flaws during our earlier work: our statistic was so extreme that we could not obtain a nonzero p-value using due to the nature of the simulation. Hence, we employ the asymptotic approach, which has the advantage of producing a non-zero p-value (albeit an approximate one).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We use the function <code>t.test()</code> to conduct the two-sample, one-sided t-test, and use <code>tidy()</code> to make the results more readable.</p>
 </div>
 </div>
 </div>
@@ -8219,22 +8421,17 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1048596</span><span class="p">)</span>
 
 <span class="c1"># Two-sample T test.</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">"Table 3: p Value Computed Using Asymptotics and a Two-Sample T-test."</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">"Table 7: p Value Computed Using Asymptotics and a Two-Sample T-test."</span><span class="p">)</span>
 <span class="nf">tidy</span><span class="p">(</span>
-<span class="w">    </span><span class="nf">prop.test</span><span class="p">(</span>
-<span class="w">        </span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="nf">filter</span><span class="p">(</span><span class="n">spambase_selected</span><span class="p">,</span><span class="n">class</span><span class="o">==</span><span class="s">"non-spam"</span><span class="p">))),</span>
-<span class="w">        </span><span class="n">n</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">spambase_selected</span><span class="p">)),</span>
-<span class="w">        </span><span class="n">p</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="c1"># null hypothesis: there's no difference in the distribution</span>
-<span class="w">        </span><span class="n">alternative</span><span class="o">=</span><span class="s">"greater"</span><span class="p">,</span>
-<span class="w">        </span><span class="n">conf.level</span><span class="o">=</span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="c1"># 0.05 conf interval TODO check</span>
-<span class="w">        </span><span class="n">correct</span><span class="o">=</span><span class="kc">FALSE</span><span class="w"> </span><span class="c1"># don't use fancy statistical methods to fix stuff up</span>
-<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">filter</span><span class="p">(</span><span class="n">spambase_selected</span><span class="p">,</span><span class="w"> </span><span class="n">class</span><span class="o">==</span><span class="s">"spam"</span><span class="p">)</span><span class="o">$</span><span class="n">capital_run_length_average</span><span class="p">,</span>
+<span class="w">           </span><span class="n">y</span><span class="o">=</span><span class="nf">filter</span><span class="p">(</span><span class="n">spambase_selected</span><span class="p">,</span><span class="w"> </span><span class="n">class</span><span class="o">==</span><span class="s">"non-spam"</span><span class="p">)</span><span class="o">$</span><span class="n">capital_run_length_average</span><span class="p">,</span>
+<span class="w">           </span><span class="n">alternative</span><span class="o">=</span><span class="s">"greater"</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -8248,7 +8445,7 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[1] "Table 3: p Value Computed Using Asymptotics and a Two-Sample T-test."
+<pre>[1] "Table 7: p Value Computed Using Asymptotics and a Two-Sample T-test."
 </pre>
 </div>
 </div>
@@ -8256,13 +8453,13 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <table class="dataframe">
-<caption>A tibble: 1 × 8</caption>
+<caption>A tibble: 1 × 10</caption>
 <thead>
-<tr><th scope="col">estimate</th><th scope="col">statistic</th><th scope="col">p.value</th><th scope="col">parameter</th><th scope="col">conf.low</th><th scope="col">conf.high</th><th scope="col">method</th><th scope="col">alternative</th></tr>
-<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+<tr><th scope="col">estimate</th><th scope="col">estimate1</th><th scope="col">estimate2</th><th scope="col">statistic</th><th scope="col">p.value</th><th scope="col">parameter</th><th scope="col">conf.low</th><th scope="col">conf.high</th><th scope="col">method</th><th scope="col">alternative</th></tr>
+<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-<tr><td>0.606087</td><td>207.0817</td><td>2.975352e-47</td><td>1</td><td>0.594178</td><td>1</td><td>1-sample proportions test without continuity correction</td><td>greater</td></tr>
+<tr><td>7.145045</td><td>9.522345</td><td>2.377301</td><td>6.079311</td><td>7.322707e-10</td><td>1835.791</td><td>5.210864</td><td>Inf</td><td>Welch Two Sample t-test</td><td>greater</td></tr>
 </tbody>
 </table>
 </div>
@@ -8276,8 +8473,50 @@ The distributions for both are unimodal and strongly right-skewed.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We have determined through multiple statistcal means that there does indeed exist a relationship between longer capital letter sequences, and an email's classification as spam. Our results acheive a p value of either 0, or $2.975^{-47}$, depending on the method; both of which are (quite) statistically significant against our alpha of 0.05. This leads us to reject the null hypothesis $H_0: \mu_1 = \mu_0$. This is the result we expected to find, given our preliminary analysis showed strong differences between the samples of spam and non-spam emails.</p>
-<p>These results imply that the length of capital letter sequences is a fantastic indicator of whether or not an email is spam; we believe this can inform both individuals and AI model creators who are interested in keeping their inboxes relevant to them. We believe followup research could take advantage of results as strong as these to train a logistic regression model on capital letter sequence lengths alone, for extremely-computationally-lightweight spam detection capabilities. Future work could also progress towards identifying other categories in this dataset that are strongly correlated with an email being spam.</p>
+<p>Using this method, we obtain a p-value of $7.3222707\times10^{-10}$. This is an extremely low value, as we might have expected given the results of our bootstrapping-powered hypothesis test. However, it's also nonzero, which makes it more usable and interpretable. In this case, we have a $7.3222707\times10^{-8}$% chance of committing a Type I error (false positive).</p>
+<p>In this instance, we found that asymptotics were more trustworthy than bootstrapping. A p-value of 0 is absurd, and therefore mostly unhelpful as a measure of uncertainty, so the asymptotic value is preferable. However, both methods gave similar results (in absolute terms), which makes sense given that both are approximations of the same thing: the chance of observing something as or more extreme than the sampled data, if the null hypothesis were true. The fact that both p values are close to each other means that while one is more trustworthy than the other, both methods performed decently.</p>
+<p>Since both methods indicate a p-value less than $\alpha = 0.05$ regardless of method. Therefore we reject the null hypothesis $H_0: \mu_1 = \mu_0$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">¶</a></h2><p>In this report, we deduced that the mean average capital letter sequence length of spam emails is greater (to a statistically significant extent) than that of non-spam emails. Our preliminary analysis suggested this conclusion was likely. We calculated 95% confidence intervals (using both bootstrapping and theory-based approaches) that gave the plausible difference in means to be between (depending on the method used) 4.8 and 9.7. Finally, we performed hypothesis testing using both bootstrapping and theory-based approaches, which yielded extremely low p-values in both cases. This led us to reject the null hypothesis: that mean average length of uninterrupted sequences of capital letters is <em>not</em> greater in spam emails, compared to non-spam emails.</p>
+<p>These results were what we expected, given our preliminary analysis and our intuition (stated earlier) that spam emails may use more capital letters to grab attention and convey a sense of urgency.</p>
+<p>These results imply that the length of capital letter sequences is a fantastic indicator of whether or not an email is spam. We believe this information can aid individuals and AI model creators who are interested in keeping inboxes free of unsolicited messages, or help legitimate marketers avoid being mistaken for spam by reducing their capital letter usage. We believe followup research could explore the other variables in the <code>spambase</code> dataset to find other differences between spam and non-spam; another application of our findings could be to train a model (such as a logistic regression model) capable of classifying email as spam and non-spam email.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="References">References<a class="anchor-link" href="#References">¶</a></h2><p>Cranor, L. F., &amp; LaMacchia, B. A. (1998, August). Spam! <em>Communications of the ACM</em>, 41(8), 74–83. <a href="https://doi.org/10.1145/280324.280336">https://doi.org/10.1145/280324.280336</a>.</p>
+<p>Hopkins, M., Reeber, E., Forman, G., &amp; Suermondt, J. (1999). Spambase. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C53G6X">https://doi.org/10.24432/C53G6X</a>.</p>
+<p>Wang, Irani, &amp; Pu. (2013, October 20). A study on evolution of email spam over fifteen years. <em>9th IEEE International Conference on Collaborative Computing: Networking, Applications and Worksharing</em>. <a href="http://dx.doi.org/10.4108/icst.collaboratecom.2013.254082">http://dx.doi.org/10.4108/icst.collaboratecom.2013.254082</a>.</p>
+<p>RDocumentation. (n.d.). <em>get_p_value function.</em> <a href="https://www.rdocumentation.org/packages/infer/versions/0.5.3/topics/get_p_value">https://www.rdocumentation.org/packages/infer/versions/0.5.3/topics/get_p_value</a></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
